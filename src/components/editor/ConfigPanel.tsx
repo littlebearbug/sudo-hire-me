@@ -146,7 +146,7 @@ export const ConfigPanel: React.FC = () => {
             <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2">
               <Type size={14} /> Sections
             </h2>
-            <div className="relative group">
+            {/* <div className="relative group">
               <Button variant="outline" size="sm" className="h-8">
                 <Plus size={14} className="mr-1" /> Add
               </Button>
@@ -176,7 +176,7 @@ export const ConfigPanel: React.FC = () => {
                   Skills
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <SortableSectionList />

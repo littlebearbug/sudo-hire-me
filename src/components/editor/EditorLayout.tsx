@@ -11,7 +11,7 @@ export const EditorLayout: React.FC = () => {
       </aside>
 
       {/* Right Panel: Preview */}
-      <main className="flex-1 overflow-auto p-8 flex justify-center items-start bg-gray-100/50">
+      <main className="flex-1 overflow-auto py-8 flex justify-center items-start bg-gray-100/50">
         <div className="scale-[0.8] origin-top print:scale-100">
           <ResumePreview />
         </div>

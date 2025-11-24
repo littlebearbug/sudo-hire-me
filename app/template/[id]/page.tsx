@@ -1,18 +1,21 @@
-import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export default function TemplatePage({ params }: { params: { id: string } }) {
+interface Props {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function TemplatePage({ params }: Props) {
+  const { id } = await params;
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
       <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-lg text-center">
-        <h1 className="text-2xl font-bold mb-4">
-          Template Preview: {params.id}
-        </h1>
+        <h1 className="text-2xl font-bold mb-4">Template Preview: {id}</h1>
         <p className="text-gray-500 mb-8">
-          This is a preview of the {params.id} template. In a full
-          implementation, this would show a static preview of the template with
-          dummy data.
+          This is a preview of the {id} template. In a full implementation, this
+          would show a static preview of the template with dummy data.
         </p>
 
         <div className="flex gap-4 justify-center">

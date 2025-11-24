@@ -8,7 +8,8 @@ import {
   ResumeConfig,
   initialBaseInfo,
   initialConfig,
-} from "../types/resume";
+  initialSections,
+} from "@/src/types/resume";
 
 interface ResumeState {
   resumeData: ResumeData;
@@ -73,7 +74,7 @@ const createDefaultSection = (type: Section["type"]): Section => {
 export const useResumeStore = create<ResumeState>((set) => ({
   resumeData: {
     baseInfo: initialBaseInfo,
-    sections: [],
+    sections: initialSections,
     config: initialConfig,
   },
   activeSectionId: null,
