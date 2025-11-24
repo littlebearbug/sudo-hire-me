@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseInfo } from "../../types/resume";
+import { BaseInfo } from "@/src/types/resume";
 import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react";
 
 interface BaseInfoSectionProps {

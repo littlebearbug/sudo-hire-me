@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { useResumeStore } from "../store/useResumeStore";
-import { ResumeData } from "../types/resume";
+import { useResumeStore } from "@/src/store/useResumeStore";
+import { ResumeData } from "@/src/types/resume";
 
 const STORAGE_KEY = "resume_data_v1";
 const AUTO_SAVE_INTERVAL = 30000; // 30 seconds

@@ -17,10 +17,9 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, Trash2, Eye, EyeOff, Edit2 } from "lucide-react";
-import { useResumeStore } from "../../store/useResumeStore";
-import { Section } from "../../types/resume";
-import { Button } from "../ui/Button";
-import { cn } from "../../lib/utils";
+import { useResumeStore } from "@/src/store/useResumeStore";
+import { Section } from "@/src/types/resume";
+import { cn } from "@/src/lib/utils";
 
 interface SortableItemProps {
   section: Section;

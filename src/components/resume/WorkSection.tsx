@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "../../types/resume";
+import { Section } from "@/src/types/resume";
 
 interface WorkSectionProps {
   section: Section;

@@ -1,8 +1,8 @@
 import React from "react";
-import { useResumeStore } from "../../store/useResumeStore";
+import { useResumeStore } from "@/src/store/useResumeStore";
 import { BaseInfoSection } from "./BaseInfoSection";
 import { SectionRenderer } from "./SectionRenderer";
-import { cn } from "../../lib/utils";
+import { cn } from "@/src/lib/utils";
 
 export const ResumePreview: React.FC = () => {
   const { resumeData } = useResumeStore();

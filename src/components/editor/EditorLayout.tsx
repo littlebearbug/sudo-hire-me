@@ -1,5 +1,5 @@
 import React from "react";
-import { ResumePreview } from "../resume/ResumePreview";
+import { ResumePreview } from "@/src/components/resume/ResumePreview";
 import { ConfigPanel } from "./ConfigPanel";
 
 export const EditorLayout: React.FC = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Section } from "../../types/resume";
+import { Section } from "@/src/types/resume";
 import { EducationSection } from "./EducationSection";
 import { WorkSection } from "./WorkSection";
 import { ProjectSection } from "./ProjectSection";

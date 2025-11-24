@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { EditorLayout } from "../../src/components/editor/EditorLayout";
-import { useAutoSave } from "../../src/hooks/useAutoSave";
-import { useResumeStore } from "../../src/store/useResumeStore";
+import { EditorLayout } from "@/src/components/editor/EditorLayout";
+import { useAutoSave } from "@/src/hooks/useAutoSave";
+import { useResumeStore } from "@/src/store/useResumeStore";
 
 export default function EditorPage() {
   // Initialize auto-save

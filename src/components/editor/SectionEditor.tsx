@@ -1,8 +1,8 @@
 import React from "react";
-import { useResumeStore } from "../../store/useResumeStore";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
-import { Label } from "../ui/Label";
+import { useResumeStore } from "@/src/store/useResumeStore";
+import { Button } from "@/src/components/ui/Button";
+import { Input } from "@/src/components/ui/Input";
+import { Label } from "@/src/components/ui/Label";
 import { ArrowLeft, Plus, Trash2 } from "lucide-react";
 
 export const SectionEditor: React.FC = () => {
