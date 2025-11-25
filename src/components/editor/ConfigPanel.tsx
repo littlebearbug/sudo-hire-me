@@ -19,8 +19,22 @@ export const ConfigPanel: React.FC = () => {
   } = useResumeStore();
   const { baseInfo, config } = resumeData;
 
-  const handlePrint = () => {
-    window.print();
+  const handleExportPDF = async () => {
+    const element = document.getElementById("resume-preview");
+    if (!element) return;
+
+    // Dynamically import html2pdf to avoid SSR issues
+    const html2pdf = (await import("html2pdf.js")).default;
+
+    const opt = {
+      margin: 0,
+      filename: "resume.pdf",
+      image: { type: "jpeg" as const, quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" as const },
+    };
+
+    html2pdf().set(opt).from(element).save();
   };
 
   if (activeSectionId) {
@@ -35,7 +49,7 @@ export const ConfigPanel: React.FC = () => {
     <div className="flex flex-col h-full">
       <div className="p-6 border-b border-gray-200 flex justify-between items-center bg-white sticky top-0 z-10">
         <h1 className="text-xl font-bold text-gray-900">Resume Editor</h1>
-        <Button onClick={handlePrint} variant="primary" size="sm">
+        <Button onClick={handleExportPDF} variant="primary" size="sm">
           <Download size={16} className="mr-2" /> Export PDF
         </Button>
       </div>

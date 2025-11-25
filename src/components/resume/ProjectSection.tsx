@@ -1,5 +1,6 @@
 import React from "react";
 import { Section } from "@/src/types/resume";
+import ReactMarkdown from "react-markdown";
 
 interface ProjectSectionProps {
   section: Section;
@@ -33,9 +34,9 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({ section }) => {
               </span>
             </div>
             {item.description && (
-              <p className="text-sm text-[var(--text-secondary)] mt-1 whitespace-pre-line">
-                {item.description}
-              </p>
+              <div className="text-sm text-[var(--text-secondary)] mt-1 prose prose-sm max-w-none">
+                <ReactMarkdown>{item.description}</ReactMarkdown>
+              </div>
             )}
             {item.technologies && (
               <p className="text-xs text-[var(--text-secondary)] mt-1 italic">

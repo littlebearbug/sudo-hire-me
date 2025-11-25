@@ -4,6 +4,8 @@ import { EducationSection } from "./EducationSection";
 import { WorkSection } from "./WorkSection";
 import { ProjectSection } from "./ProjectSection";
 import { SkillSection } from "./SkillSection";
+import { AwardSection } from "./AwardSection";
+import { SelfEvalSection } from "./SelfEvalSection";
 
 interface SectionRendererProps {
   section: Section;
@@ -23,7 +25,10 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
       return <ProjectSection section={section} />;
     case "skill":
       return <SkillSection section={section} />;
-    // Add other types as needed
+    case "award":
+      return <AwardSection section={section} />;
+    case "self_eval":
+      return <SelfEvalSection section={section} />;
     default:
       return (
         <div className="mb-6 p-4 border border-dashed border-gray-300 rounded text-center text-gray-500">
