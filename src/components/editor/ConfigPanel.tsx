@@ -8,6 +8,8 @@ import { Select } from "@/src/components/ui/Select";
 import { SortableSectionList } from "./SortableSectionList";
 import { SectionEditor } from "./SectionEditor";
 import { Plus, Download, Palette, Layout, Type } from "lucide-react";
+import { toPng } from "html-to-image";
+import { jsPDF } from "jspdf";
 
 export const ConfigPanel: React.FC = () => {
   const {
@@ -23,18 +25,43 @@ export const ConfigPanel: React.FC = () => {
     const element = document.getElementById("resume-preview");
     if (!element) return;
 
-    // Dynamically import html2pdf to avoid SSR issues
-    const html2pdf = (await import("html2pdf.js")).default;
+    try {
+      // 1. 生成全长图片
+      const dataUrl = await toPng(element, {
+        quality: 0.95,
+        style: {
+          backgroundColor: "#ffffff",
+        },
+      });
 
-    const opt = {
-      margin: 0,
-      filename: "resume.pdf",
-      image: { type: "jpeg" as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" as const },
-    };
+      // 2. 初始化 PDF
+      const pdf = new jsPDF("p", "pt", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
 
-    html2pdf().set(opt).from(element).save();
+      // 3. 获取图片属性并计算在 PDF 中的实际渲染高度
+      const imgProps = pdf.getImageProperties(dataUrl);
+      const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      let heightLeft = imgHeight; // 剩余需要打印的高度
+      let position = 0; // 当前页面图片的垂直偏移量
+
+      // 4. 第一页
+      pdf.addImage(dataUrl, "PNG", 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      // 5. 循环添加后续页面
+      while (heightLeft > 0) {
+        position -= pdfHeight; // 向上移动图片位置（产生分页效果）
+        pdf.addPage();
+        pdf.addImage(dataUrl, "PNG", 0, position, pdfWidth, imgHeight);
+        heightLeft -= pdfHeight;
+      }
+
+      pdf.save("resume.pdf");
+    } catch (error) {
+      console.error("导出 PDF 失败:", error);
+    }
   };
 
   if (activeSectionId) {
