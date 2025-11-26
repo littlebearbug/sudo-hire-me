@@ -23,7 +23,7 @@ export const ResumePreview: React.FC = () => {
     <div
       id="resume-preview"
       className={cn(
-        "bg-white shadow-2xl mx-auto min-h-[297mm] w-[210mm] origin-top transform transition-transform duration-200 ease-out",
+        "bg-white shadow-2xl mx-auto min-h-[296mm] w-[210mm] origin-top transform transition-transform duration-200 ease-out",
         "print:shadow-none print:w-full print:h-auto print:mx-0 print:transform-none"
       )}
       style={containerStyle}
