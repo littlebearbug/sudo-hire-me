@@ -8,7 +8,7 @@ import { Select } from "@/src/components/ui/Select";
 import { SortableSectionList } from "./SortableSectionList";
 import { SectionEditor } from "./SectionEditor";
 import { Plus, Download, Palette, Layout, Type } from "lucide-react";
-import { Html2PdfOptions } from "html-img-pdf";
+import { htmlToPdf } from "html-img-pdf";
 
 export const ConfigPanel: React.FC = () => {
   const {
@@ -29,18 +29,12 @@ export const ConfigPanel: React.FC = () => {
       element.getClientRects()[0].width
     );
 
-    // Dynamically import html2pdf to avoid SSR issues
-    const html2pdf = (await import("html-img-pdf")).default;
-
-    const opt: Html2PdfOptions = {
-      margin: 0,
-      filename: "resume.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { pixelRatio: 2 },
-      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
-    };
-
-    html2pdf().set(opt).from(element).save();
+    await htmlToPdf(element, {
+      fileName: "resume.pdf",
+      imageFormat: "jpeg",
+      quality: 0.98,
+      pageSize: "a4",
+    });
   };
 
   if (activeSectionId) {
